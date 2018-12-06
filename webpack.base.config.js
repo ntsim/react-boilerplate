@@ -1,11 +1,13 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-const getStyleLoaders = (cssOptions = {}, preProcessorLoader) => {
+const getStyleLoaders = (
+  cssOptions = {},
+  preProcessorLoader,
+  env = process.env.NODE_ENV,
+) => {
   const baseLoader =
-    process.env.NODE_ENV === 'production'
-      ? 'style-loader'
-      : MiniCssExtractPlugin.loader;
+    env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader';
 
   const loaders = [
     baseLoader,

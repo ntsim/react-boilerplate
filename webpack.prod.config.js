@@ -1,4 +1,3 @@
-const baseConfig = require('./webpack.base.config');
 const HtmlPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,6 +6,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const baseConfig = require('./webpack.base.config');
 
 process.env.NODE_ENV = 'production';
 
@@ -33,7 +33,7 @@ module.exports = merge.smart(baseConfig, {
             cacheCompression: true,
             compact: true,
           },
-        }
+        },
       },
     ],
   },
