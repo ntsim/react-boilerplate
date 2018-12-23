@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.prod.config.js",
     "format": "prettier --write **/*.{js,jsx,css,scss,html}",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
