@@ -1,3 +1,4 @@
+const DotEnvPlugin = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
@@ -111,4 +112,10 @@ module.exports = {
       name: 'manifest',
     },
   },
+  plugins: [
+    new DotEnvPlugin({
+      path: process.env.ENV_FILE ? `./.env.${process.env.ENV_FILE}` : './.env',
+      safe: true,
+    }),
+  ],
 };
