@@ -7,7 +7,9 @@
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.prod.config.js",
     "format": "prettier --write **/*.{js,jsx,css,scss,html}",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:snapshot": "jest --updateSnapshot"
   },
   "author": "",
   "license": "ISC",
