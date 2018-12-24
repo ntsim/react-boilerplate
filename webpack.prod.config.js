@@ -1,5 +1,6 @@
 process.env.NODE_ENV = 'production';
 
+const fs = require('fs-extra');
 const HtmlPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -10,6 +11,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const baseConfig = require('./webpack.base.config');
+
+fs.emptyDirSync('./build');
 
 module.exports = merge.smart(baseConfig, {
   mode: 'production',
