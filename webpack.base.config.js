@@ -1,5 +1,6 @@
 const DotEnvPlugin = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 
 const getStyleLoaders = (
@@ -117,5 +118,6 @@ module.exports = {
       path: process.env.ENV_FILE ? `./.env.${process.env.ENV_FILE}` : './.env',
       safe: true,
     }),
+    new StyleLintPlugin(),
   ],
 };
