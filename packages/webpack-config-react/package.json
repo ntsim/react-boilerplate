@@ -6,6 +6,9 @@
   "author": "Nicholas Tsim <nicholastsim@gmail.com>",
   "main": "index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.4",

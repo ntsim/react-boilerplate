@@ -6,6 +6,9 @@
   "author": "Nicholas Tsim <nicholastsim@gmail.com>",
   "main": "index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "css-loader": "^1.0.1",
     "dotenv-webpack": "^1.5.7",
