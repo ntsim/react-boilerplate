@@ -2,10 +2,14 @@
   "name": "@ntsim/webpack-config-react",
   "version": "0.1.0",
   "description": "Boilerplate Webpack config for React with Javascript",
-  "repository": "ntsim/react-boilerplate",
   "author": "Nicholas Tsim <nicholastsim@gmail.com>",
+  "homepage": "https://github.com/ntsim/react-boilerplate#readme",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntsim/react-boilerplate.git"
+  },
   "publishConfig": {
     "access": "public"
   },
