@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'production';
 
-const fs = require('fs-extra');
 const HtmlPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,35 +11,16 @@ const merge = require('webpack-merge');
 
 const baseConfig = require('./webpack.base.config');
 
-fs.emptyDirSync('./build');
-
-module.exports = merge.smart(baseConfig, {
+module.exports = merge(baseConfig, {
   mode: 'production',
   bail: true,
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
   },
   devtool: 'source-map',
-  module: {
-    strictExportPresence: true,
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            cacheCompression: true,
-            compact: true,
-          },
-        },
-      },
-    ],
-  },
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -78,7 +58,7 @@ module.exports = merge.smart(baseConfig, {
       removeEmptyAttributes: true,
       removeRedundantAttributes: true,
       removeStyleLinkTypeAttributes: true,
-      template: path.resolve(__dirname, 'public/index.html'),
+      template: path.resolve(process.cwd(), 'public/index.html'),
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),

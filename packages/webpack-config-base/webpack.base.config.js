@@ -1,36 +1,8 @@
 const DotEnvPlugin = require('dotenv-webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 
-const getStyleLoaders = (
-  cssOptions = {},
-  preProcessorLoader,
-  env = process.env.NODE_ENV,
-) => {
-  const baseLoader =
-    env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader';
-
-  const loaders = [
-    baseLoader,
-    {
-      loader: 'css-loader',
-      options: {
-        importLoaders: 1,
-        localIdentName: '[name]__[local]--[hash:base64:8]',
-        sourceMap: true,
-        ...cssOptions,
-      },
-    },
-    { loader: 'postcss-loader' },
-  ];
-
-  if (preProcessorLoader) {
-    loaders.push(preProcessorLoader);
-  }
-
-  return loaders;
-};
+const getStyleLoaders = require('./utils/getStyleLoaders');
 
 module.exports = {
   entry: {
@@ -40,23 +12,8 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
-        },
-      },
-      {
         test: /\.(png|svg|jpe?g|gif)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           name: 'images/[name].[hash:8].[ext]',
@@ -64,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           name: 'fonts/[name].[hash:8].[ext]',
@@ -82,7 +39,7 @@ module.exports = {
             importLoaders: 2,
             modules: true,
           },
-          'sass-loader',
+          require.resolve('sass-loader'),
         ),
       },
       {
@@ -92,7 +49,7 @@ module.exports = {
           {
             importLoaders: 2,
           },
-          'sass-loader',
+          require.resolve('sass-loader'),
         ),
         sideEffects: true,
       },
@@ -100,7 +57,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      src: path.resolve(__dirname, 'src'),
+      src: path.resolve(process.cwd(), 'src'),
     },
     extensions: ['.js', '.jsx', '.json'],
   },

@@ -7,19 +7,16 @@ const baseConfig = require('./webpack.base.config');
 module.exports = merge(baseConfig, {
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
   },
   devtool: 'inline-source-map',
-  module: {
-    strictExportPresence: true,
-  },
   plugins: [
     new HtmlPlugin({
       inject: true,
-      template: path.resolve(__dirname, 'public/index.html'),
+      template: path.resolve(process.cwd(), 'public/index.html'),
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
