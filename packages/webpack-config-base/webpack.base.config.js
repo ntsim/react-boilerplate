@@ -6,7 +6,7 @@ const getStyleLoaders = require('./utils/getStyleLoaders');
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    main: ['./src/main'],
   },
   module: {
     strictExportPresence: true,
