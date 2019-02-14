@@ -2,6 +2,7 @@
   "name": "@ntsim/webpack-config-base",
   "version": "0.1.0",
   "description": "Base boilerplate Webpack config",
+  "repository": "ntsim/react-boilerplate",
   "author": "Nicholas Tsim <nicholastsim@gmail.com>",
   "main": "index.js",
   "license": "MIT",

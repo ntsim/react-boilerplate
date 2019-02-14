@@ -2,8 +2,9 @@
   "name": "@ntsim/webpack-config-react",
   "version": "0.1.0",
   "description": "Boilerplate Webpack config for React with Javascript",
-  "main": "index.js",
+  "repository": "ntsim/react-boilerplate",
   "author": "Nicholas Tsim <nicholastsim@gmail.com>",
+  "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
     "@babel/core": "^7.2.2",
