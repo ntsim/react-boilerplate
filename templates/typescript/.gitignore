@@ -1,0 +1,12 @@
+.idea/
+*.iml
+
+.cache/
+node_modules/
+build/
+coverage/
+
+npm-debug.log
+
+.env
+!.env.example
