@@ -1,6 +1,6 @@
 {
   "name": "@ntsim/webpack-config-react-typescript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Boilerplate Webpack config for React with Typescript",
   "author": "Nicholas Tsim <nick@hiveit.co.uk>",
   "homepage": "https://github.com/ntsim/react-boilerplate#readme",
