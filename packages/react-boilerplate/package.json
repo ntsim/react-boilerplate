@@ -1,0 +1,24 @@
+{
+  "name": "@ntsim/react-boilerplate",
+  "version": "0.1.1",
+  "description": "React project boilerplate generator",
+  "author": "Nicholas Tsim <nicholastsim@gmail.com>",
+  "homepage": "https://github.com/ntsim/react-boilerplate#readme",
+  "main": "index.js",
+  "bin": {
+    "react-boilerplate": "./index.js"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntsim/react-boilerplate.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.2"
+  }
+}
