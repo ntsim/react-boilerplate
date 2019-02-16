@@ -1,17 +1,15 @@
 const chalk = require('chalk');
-const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const WebpackDevServer = require('webpack-dev-server');
 const addEntries = require('webpack-dev-server/lib/utils/addEntries');
 const webpack = require('webpack');
-const argv = require('yargs').argv;
+const { argv } = require('yargs');
+const asyncTaskMessages = require('../utils/asyncTaskMessages');
 
 const devConfig = require('../webpack.dev.config');
 
-const typescriptFormatter = ForkTsCheckerPlugin.createFormatter('codeframe');
-
 function clearConsole() {
   process.stdout.write(
-    process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
+    process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H',
   );
 }
 
@@ -40,35 +38,6 @@ try {
   process.exit(1);
 }
 
-let tsMessagesPromise;
-let tsMessagesResolver;
-
-compiler.hooks.beforeCompile.tap('beforeCompile', () => {
-  tsMessagesPromise = new Promise(resolve => {
-    tsMessagesResolver = msgs => {
-      resolve(msgs);
-    };
-  });
-});
-
-ForkTsCheckerPlugin.getCompilerHooks(compiler).receive.tap(
-  'afterTypeScriptCheck',
-  (diagnostics, lints) => {
-    const allMsgs = [...diagnostics, ...lints];
-
-    const format = message => {
-      return `${message.file}\n${typescriptFormatter(message, true)}`;
-    };
-
-    tsMessagesResolver({
-      errors: allMsgs.filter(msg => msg.severity === 'error').map(format),
-      warnings: allMsgs.filter(msg => msg.severity === 'warning').map(format),
-    });
-  },
-);
-
-let isFirstCompile = true;
-
 compiler.hooks.done.tap('done', async stats => {
   clearConsole();
 
@@ -78,7 +47,7 @@ compiler.hooks.done.tap('done', async stats => {
     errors: true,
   });
 
-  const { errors, warnings } = await tsMessagesPromise;
+  const { errors, warnings } = await asyncTaskMessages.getMessages();
   statsData.errors.push(...errors);
   statsData.warnings.push(...warnings);
 
@@ -99,8 +68,6 @@ compiler.hooks.done.tap('done', async stats => {
   if (isSuccessful) {
     console.log(chalk.green('Compiled successfully!'));
   }
-
-  isFirstCompile = false;
 
   if (messages.errors.length) {
     // Only keep the first error. Others are often indicative
@@ -137,3 +104,8 @@ devServer.listen(serverOptions.port, serverOptions.host, err => {
     process.exit();
   });
 });
+
+module.exports = {
+  compiler,
+  devServer,
+};
