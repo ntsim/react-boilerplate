@@ -33,12 +33,12 @@ const resolveTaskMessages = (taskKey, { errors = [], warnings = [] }) => {
  * @returns {Promise<{errors: [], warnings: []}>}
  */
 const getMessages = async () => {
-  const results = Promise.all(Object.values(this.promises));
+  const results = await Promise.all(Object.values(promises));
 
   return results.reduce(
     (acc, result) => {
-      acc.errors.push(result.errors);
-      acc.warnings.push(result.warnings);
+      acc.errors.push(...result.errors);
+      acc.warnings.push(...result.warnings);
       return acc;
     },
     {
