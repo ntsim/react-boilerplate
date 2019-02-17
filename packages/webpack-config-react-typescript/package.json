@@ -1,6 +1,6 @@
 {
   "name": "@ntsim/webpack-config-react-typescript",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Boilerplate Webpack config for React with Typescript",
   "author": "Nicholas Tsim <nick@hiveit.co.uk>",
   "homepage": "https://github.com/ntsim/react-boilerplate#readme",
@@ -14,7 +14,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ntsim/webpack-config-base": "^0.1.1",
+    "@ntsim/webpack-config-base": "^0.1.4",
     "fork-ts-checker-webpack-plugin": "^1.0.0-alpha.6",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
