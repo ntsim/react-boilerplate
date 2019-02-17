@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate-javascript",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.config.js",
+    "start": "node scripts/start",
     "build": "webpack --config webpack.prod.config.js",
     "format": "prettier --write **/*.{js,jsx,css,scss,html}",
     "lint": "npm run lint:js && npm run lint:style",
