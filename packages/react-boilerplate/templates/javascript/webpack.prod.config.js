@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const merge = require('webpack-merge');
-const { prodConfig: baseConfig } = require('../../../webpack-config-base');
-const { prodConfig: reactConfig } = require('../../../webpack-config-react');
+const { prodConfig: baseConfig } = require('@ntsim/webpack-config-base');
+const { prodConfig: reactConfig } = require('@ntsim/webpack-config-react');
 
 fs.emptyDirSync('./build');
 
